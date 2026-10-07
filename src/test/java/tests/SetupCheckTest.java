@@ -13,12 +13,13 @@ public class SetupCheckTest {
     @Test
     public void successfulLogin() {
 
-
         ChromeOptions options = new ChromeOptions();
         if (System.getenv("CI") != null) {
             options.addArguments("--headless=new", "--window-size=1920,1080");
         }
-        WebDriver driver = new ChromeDriver();
+
+        WebDriver driver = new ChromeDriver(options);
+
 
         driver.get("https://www.saucedemo.com/");
 
