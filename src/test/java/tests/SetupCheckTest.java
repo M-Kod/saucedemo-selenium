@@ -5,8 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class SetupCheckTest {
 
@@ -29,12 +33,14 @@ public class SetupCheckTest {
         WebElement inputPassword = driver.findElement(By.id("password"));
         inputPassword.sendKeys("secret_sauce");
 
-         WebElement buttonLogin = driver.findElement(By.id("login-button"));
+        WebElement buttonLogin = driver.findElement(By.id("login-button"));
         buttonLogin.click();
 
-        WebElement element = driver.findElement(By.cssSelector("[data-test='title']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement pageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test='title']"))
+        );
 
-        Assert.assertEquals(element.getText(), "Products");
+        Assert.assertEquals(pageTitle.getText(), "Products");
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
 
         driver.quit();
