@@ -1,5 +1,7 @@
 # SauceDemo Selenium Tests
 
+![UI Tests](https://github.com/M-Kod/saucedemo-selenium/actions/workflows/tests.yml/badge.svg)
+
 ## About
 UI test automation project for the login page of [SauceDemo](https://www.saucedemo.com/).
 The tests cover one positive and two negative login scenarios.
